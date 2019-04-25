@@ -1,7 +1,6 @@
 {
   "name": "json-form",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "dev": "yarn parcel ./example/index.html"
   },
