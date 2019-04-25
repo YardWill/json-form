@@ -2,7 +2,8 @@
   "name": "json-form",
   "version": "0.1.0",
   "scripts": {
-    "dev": "yarn parcel ./example/index.html"
+    "dev": "parcel ./example/index.html",
+    "build": "tsc"
   },
   "main": "build/index.js",
   "dependencies": {
