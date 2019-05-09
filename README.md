@@ -80,6 +80,8 @@ render(<Page />, document.getElementById("app"))
 ## API
 
 ```
+import * as React from 'react';
+import { Subject } from 'rxjs';
 export declare const registerComponent: (type: string, Component: React.ReactNode) => void;
 interface IFormConfig {
     type: string;
@@ -93,28 +95,36 @@ interface IData {
     [x: string]: any;
 }
 interface IFormProps {
+    inline?: boolean;
     config: IFormConfig[];
     initialData?: IData;
     errorHandler: (errorMsg?: string) => void;
     submitHandler: (data: IData) => void;
+    effects: ($: (target: string) => typeof Subject, setValue: (target: string, value: any) => void) => void;
+    button: (submit: (data: IData) => void, reset: () => void) => React.ReactNode;
 }
 interface IFormState {
     [x: string]: any;
 }
 declare class Form extends React.Component<IFormProps, IFormState> {
+    subscribes: {
+        [x: string]: any;
+    };
     constructor(props: IFormProps);
-    onChange: (target: string, value: any) => void;
-    submit: () => void;
+    private onChange;
+    private submit;
+    reset: () => void;
     render(): JSX.Element;
 }
 export default Form;
+
 ```
 
 ## Custom Component API
 
 If you want to use a custom component? Here is the rule your component should depend on. The component should have two APIs named value and onChange
 1. value: It's the real value your component has.
-2. onChange: The component change event is hook with a param named value(The value after change), and the hook will change the value as you expect. You can do something in the hook like adjust value.
+2. onChange: The component change event is a hook with a param named value(The value after change), and the hook will change the value as you expect. You can do something in the hook like adjust value.
 
 
 ## Effect
