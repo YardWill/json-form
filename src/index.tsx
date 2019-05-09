@@ -34,11 +34,11 @@ class Form extends React.Component<IFormProps, IFormState> {
     super(props);
     this.state = props.initialData || {};
   }
-  public onChange = (target: string, value: any) => {
-    this.setState({[target]: value})
+  private onChange = (target: string, value: any) => {
+    this.setState({ [target]: value })
   }
-  public submit = () => {
-    const {config, errorHandler, submitHandler} = this.props
+  private submit = () => {
+    const { config, errorHandler, submitHandler } = this.props
     const err = config.some((item) => {
       if (item.test && !item.test(this.state[item.target])) {
         errorHandler(item.errorMsg)
@@ -55,7 +55,7 @@ class Form extends React.Component<IFormProps, IFormState> {
   }
   public render() {
     const state = this.state;
-    const {config} = this.props
+    const { config } = this.props
 
     return <div>
       {config.map(item => {
