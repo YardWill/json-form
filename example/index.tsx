@@ -31,6 +31,7 @@ const effects = ($, setValue) => {
 
 const Page = () => {
   return <div>
+    <h3>#inline mode</h3>
     <Form
       inline
       config={config}
@@ -44,6 +45,7 @@ const Page = () => {
       </div>}
     />
     ----------------------------
+    <h3>#normal mode</h3>
     <Form
       config={config}
       initialData={initialData}
