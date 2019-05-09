@@ -1,8 +1,13 @@
 ## JSON-FORM
 A easy way to write form!
 
-## Usage
+## Start 
+```
+yarn dev
+```
+This a project powered by parcel.
 
+## Usage
 
 
 
@@ -75,14 +80,14 @@ render(<Page />, document.getElementById("app"))
 
 ```
 
-## custom component API
+## Custom Component API
 
 If you want to use a custom component? Here is the rule your component should depend on. The component should have two APIs named value and onChange
 1. value: It's the real value your component has.
 2. onChange: The component change event is hook with a param named value(The value after change), and the hook will change the value as you expect. You can do something in the hook like adjust value.
 
 
-## effect
+## Effect
 There will be a problem when the data effect each other.
 For Example:
 When I change the name value, it also changes the title value the same.
