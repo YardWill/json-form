@@ -20,7 +20,7 @@ interface IData {
 }
 
 interface IFormProps {
-  inline: boolean
+  inline?: boolean
   config: IFormConfig[]
   initialData?: IData
   errorHandler: (errorMsg?: string) => void
@@ -86,7 +86,8 @@ class Form extends React.Component<IFormProps, IFormState> {
       {config.map(item => {
         const Component = componentLib[item.type]
         const value = state[item.target];
-        return <div key={item.target} style={{ display: inline ? 'inline-block' : 'block' }}>
+        return <div key={item.target} style={{ display: inline ? 'inline-flex' : 'flex', margin: '0 20px 20px 0' }}>
+          <div style={{ paddingRight: 20, width: !inline ? '80px' : 'auto' }}>{item.title}:</div>
           <Component
             value={value}
             onChange={(e: any) => this.onChange(item.target, e)}
