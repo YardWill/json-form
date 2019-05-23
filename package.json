@@ -1,6 +1,6 @@
 {
   "name": "@tuya-fe/json-form",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "scripts": {
     "dev": "parcel ./example/index.html",
     "build": "tsc"
