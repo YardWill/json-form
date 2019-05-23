@@ -45,7 +45,7 @@ patch:
   <<: *git_def
   script:
     - npm version patch
-    - npm publish --userconfig=.npmrc
+    - npm publish --registry=https://registry-npm.tuya-inc.top  --scope=tuya-fe --always-auth
     - git push --follow-tags
   stage: publish
   when: manual
