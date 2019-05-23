@@ -9,7 +9,7 @@ stages:
   before_script:
     - git config --global user.email $EMAIL
     - git config --global user.name $USERNAME
-    - echo 'registry=https://registry-npm.tuya-inc.top/' >> .npmrc
+    - echo '@tuya-fe:registry=https://registry-npm.tuya-inc.top/' >> .npmrc
     - echo '//registry-npm.tuya-inc.top/:_password=$PASSWORD' >> .npmrc
     - echo '//registry-npm.tuya-inc.top/:username=$USERNAME' >> .npmrc
     - echo '//registry-npm.tuya-inc.top/:email=$EMAIL' >> .npmrc
