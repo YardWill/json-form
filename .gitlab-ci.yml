@@ -1,0 +1,69 @@
+image: registry.shdocker.tuya-inc.top/fe-base/compile/node:latest
+
+stages:
+  - build
+  - test
+  - publish
+
+.git: &git_def
+  before_script:
+    - git config --global user.email $EMAIL
+    - git config --global user.name $USERNAME
+    - echo 'registry=https://registry-npm.tuya-inc.top/' >> .npmrc
+    - echo '//registry-npm.tuya-inc.top/:_password=$PASSWORD' >> .npmrc
+    - echo '//registry-npm.tuya-inc.top/:username=$USERNAME' >> .npmrc
+    - echo '//registry-npm.tuya-inc.top/:email=$EMAIL' >> .npmrc
+    - echo '//registry-npm.tuya-inc.top/:always-auth=false' >> .npmrc
+    - cat .npmrc
+
+.cache_yarn: &cache_yarn_def
+  cache:
+    key: ${CI_PROJECT_PATH}
+    paths:
+      - node_modules
+      - lib
+
+build:
+  <<: *cache_yarn_def
+  script:
+    - yarn
+    - yarn build
+  only:
+    - master
+  stage: build
+
+test:
+  <<: *cache_yarn_def
+  script:
+    - yarn
+    - yarn test
+  only:
+    - master
+  stage: test
+
+patch:
+  <<: *git_def
+  script:
+    - npm version patch
+    - npm publish --userconfig=.npmrc
+    - git push --follow-tags
+  stage: publish
+  when: manual
+
+minor:
+  <<: *git_def
+  script:
+    - npm version minor
+    - npm publish
+    - git push --follow-tags
+  stage: publish
+  when: manual
+
+master:
+  <<: *git_def
+  script:
+    - npm version master
+    - npm publish
+    - git push --follow-tags
+  stage: publish
+  when: manual
